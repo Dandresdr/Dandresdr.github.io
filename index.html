@@ -1,0 +1,60 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>GPSphotohack</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="landscape-background"></div>
+    <div class="container">
+        <h1>GPSphotohack</h1>
+        <div class="photo-upload">
+            <input type="file" id="imageUpload" accept="image/*">
+            <button id="cameraInput" class="upload-btn">
+                Tomar Foto
+            </button>
+            <label for="imageUpload" class="upload-btn">
+                Subir Foto
+            </label>
+            
+            <!-- Hidden video and canvas for camera capture -->
+            <video id="cameraPreview" style="display:none; max-width: 100%;"></video>
+            <canvas id="cameraCaptureCanvas" style="display:none;"></canvas>
+        </div>
+        
+        <div class="metadata-form">
+            <input type="text" id="addressInput" placeholder="Dirección (selecciona en el mapa)">
+            <input type="datetime-local" id="dateTimeInput" placeholder="Fecha y Hora">
+            <div id="mapContainer"></div>
+        </div>
+        
+        <div class="watermark-settings">
+            <h3>Configuración de Marca de Agua</h3>
+            <div class="text-settings">
+                <label for="watermarkFont">Fuente:</label>
+                <select id="watermarkFont">
+                    <option value="Arial">Arial</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Courier New">Courier New</option>
+                </select>
+                
+                <label for="watermarkFontSize">Tamaño de Fuente:</label>
+                <input type="number" id="watermarkFontSize" min="8" max="30" value="16">
+            </div>
+        </div>
+        
+        <div class="preview-container">
+            <canvas id="previewCanvas"></canvas>
+        </div>
+        
+        <div class="actions">
+            <button id="generateWatermarkBtn" style="display:none;">Generar Marca de Agua</button>
+            <button id="downloadBtn" style="display:none;">Descargar Imagen</button>
+        </div>
+    </div>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="app.js" type="module"></script>
+</body>
+</html>

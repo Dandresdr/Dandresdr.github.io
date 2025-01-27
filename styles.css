@@ -1,0 +1,192 @@
+@import url('https://unpkg.com/leaflet@1.7.1/dist/leaflet.css');
+
+:root {
+    --primary-color: #3494E6;
+    --secondary-color: #EC6EAD;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body, html {
+    font-family: 'Arial', sans-serif;
+    height: 100%;
+    overflow-y: auto;
+    background-color: transparent;
+}
+
+.landscape-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        rgba(52, 148, 230, 0.7), 
+        rgba(236, 110, 173, 0.7)
+    );
+    background-size: 400% 400%;
+    animation: 
+        landscapeMovement 20s ease infinite,
+        gradientShift 15s ease infinite;
+    z-index: -1;
+}
+
+@keyframes landscapeMovement {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+@keyframes gradientShift {
+    0% { background-size: 400% 400%; }
+    50% { background-size: 500% 500%; }
+    100% { background-size: 400% 400%; }
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+h1 {
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.photo-upload {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.upload-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.upload-btn:hover {
+    transform: scale(1.05);
+}
+
+#imageUpload {
+    display: none;
+}
+
+.metadata-form input {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 5px;
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+#mapContainer {
+    height: 250px;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#previewCanvas {
+    max-width: 100%;
+    border: 2px dashed rgba(255,255,255,0.5);
+    border-radius: 10px;
+}
+
+#cameraPreview {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.actions button {
+    margin: 10px;
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.actions button:hover {
+    opacity: 0.8;
+    transform: translateY(-3px);
+}
+
+/* Leaflet Map Customization */
+.leaflet-container {
+    background: rgba(0,0,0,0.1);
+}
+
+.watermark-settings {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.watermark-settings h3 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.watermark-settings .text-settings {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.watermark-settings label {
+    color: white;
+    margin-right: 10px;
+}
+
+.watermark-settings select,
+.watermark-settings input[type="number"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+/* Add custom scrollbar styling */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255,255,255,0.5);
+}
